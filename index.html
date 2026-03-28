@@ -215,14 +215,28 @@
             margin-top: auto;
         }
 
-        /* Cetakan Slip (Print) */
-        .print-header { display: none; }
+        /* Butang Tindakan */
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
         .print-btn {
             background-color: #28a745;
             width: 100%;
-            margin-top: 10px;
         }
         .print-btn:hover { background-color: #218838; }
+
+        .exit-btn {
+            background-color: #dc3545;
+            width: 100%;
+        }
+        .exit-btn:hover { background-color: #c82333; }
+
+        /* Cetakan Slip (Print) */
+        .print-header { display: none; }
 
         @media print {
             @page {
@@ -234,7 +248,7 @@
                 color: black;
                 display: block;
             }
-            header, .search-box, .print-btn, footer, #loading, #error {
+            header, .search-box, .action-buttons, footer, #loading, #error {
                 display: none !important;
             }
             .container {
@@ -280,6 +294,9 @@
                 align-items: flex-end;
             }
             .input-group { flex: 1; }
+            .action-buttons {
+                flex-direction: row;
+            }
         }
     </style>
 </head>
@@ -292,7 +309,7 @@
     </header>
 
     <div class="container">
-        <div class="search-box">
+        <div class="search-box" id="search-section">
             <div class="input-group">
                 <label for="tingkatan">Tingkatan</label>
                 <select id="tingkatan">
@@ -347,7 +364,10 @@
                 * Slip ini adalah cetakan komputer dan tidak memerlukan tandatangan.
             </div>
 
-            <button class="print-btn" onclick="window.print()">Cetak / Simpan PDF</button>
+            <div class="action-buttons">
+                <button class="print-btn" onclick="window.print()">Cetak / Simpan PDF</button>
+                <button class="exit-btn" onclick="keluarPaparan()">Keluar / Semak Semula</button>
+            </div>
         </div>
     </div>
 
@@ -550,6 +570,9 @@
 
                 loading.style.display = 'none';
                 resultArea.style.display = 'block';
+                
+                // Tatal (scroll) ke bahagian keputusan
+                resultArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
             } catch (err) {
                 loading.style.display = 'none';
@@ -557,6 +580,18 @@
                 errorDiv.style.display = 'block';
                 console.error(err);
             }
+        }
+
+        // Fungsi Keluar / Reset Paparan
+        function keluarPaparan() {
+            // Sembunyikan kawasan keputusan
+            document.getElementById('result-area').style.display = 'none';
+            // Kosongkan ruangan input No KP
+            document.getElementById('ic_number').value = '';
+            // Tatal semula ke bahagian atas (borang carian)
+            document.getElementById('search-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Fokuskan pada input No KP untuk mudahkan kemasukan seterusnya
+            document.getElementById('ic_number').focus();
         }
     </script>
 </body>
