@@ -11,55 +11,40 @@
             --night-blue: #151B54;
             --soft-blue-grad: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
             --white: #ffffff;
-            --accent: #ffd700;
+            --accent-gold: #FFD700;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
 
         body {
             background: var(--soft-blue-grad);
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             color: #333;
         }
 
-        /* HEADER STYLING */
+        /* HEADER */
         header {
             background-color: var(--night-blue);
-            background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png'); /* Abstract corporate pattern */
+            background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png'); /* Corak Abstrak */
             color: var(--white);
-            padding: 30px 20px;
+            padding: 30px 15px;
             text-align: center;
+            border-bottom: 4px solid var(--accent-gold);
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            border-bottom: 4px solid var(--accent);
         }
 
-        header img {
-            width: 80px;
-            margin-bottom: 10px;
-        }
+        header img { width: 80px; margin-bottom: 10px; }
+        header h1 { font-size: 1.6rem; letter-spacing: 1px; }
+        header p { font-size: 0.9rem; opacity: 0.8; font-weight: 300; }
 
-        header h1 {
-            font-size: 1.5rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        header p {
-            font-size: 0.9rem;
-            font-weight: 300;
-            opacity: 0.9;
-        }
-
-        /* MAIN CONTAINER */
+        /* MAIN CONTENT */
         .container {
             max-width: 800px;
+            width: 95%;
             margin: 30px auto;
-            padding: 0 15px;
+            flex: 1;
         }
 
         .card {
@@ -69,17 +54,10 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
+        .search-box { text-align: center; }
+        .form-group { margin-bottom: 20px; text-align: left; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; }
+        
         select, input {
             width: 100%;
             padding: 12px;
@@ -90,372 +68,300 @@
             transition: 0.3s;
         }
 
-        select:focus, input:focus {
-            border-color: var(--night-blue);
-        }
+        select:focus, input:focus { border-color: var(--night-blue); }
 
-        button {
-            width: 100%;
+        .btn-check {
             background: var(--night-blue);
             color: white;
-            padding: 15px;
+            padding: 15px 30px;
             border: none;
             border-radius: 8px;
-            font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
-            transition: 0.3s;
-            text-transform: uppercase;
-        }
-
-        button:hover {
-            background: #0d123a;
-            transform: translateY(-2px);
-        }
-
-        /* RESULT SECTION */
-        #result-section {
-            margin-top: 30px;
-            display: none;
-        }
-
-        .student-header {
-            border-bottom: 2px solid var(--night-blue);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-        }
-
-        .result-table {
             width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            transition: 0.3s;
         }
 
-        .result-table th, .result-table td {
-            padding: 10px;
-            border: 1px solid #eee;
-            text-align: left;
-        }
+        .btn-check:hover { background: #1e2a8a; transform: translateY(-2px); }
 
-        .result-table th {
-            background: #f8f9fa;
-        }
+        /* RESULTS AREA */
+        #result-area { display: none; margin-top: 20px; }
 
-        .summary-grid {
+        .slip-header-print { display: none; width: 100%; margin-bottom: 15px; }
+        .slip-header-print img { width: 100%; height: auto; }
+
+        .info-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+        }
+
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 0.9rem; }
+        th { background: #f8f9fa; text-align: left; padding: 10px; border: 1px solid #ddd; }
+        td { padding: 10px; border: 1px solid #ddd; }
+        .text-center { text-align: center; }
+
+        .summary-box {
             background: #f1f4f9;
-            padding: 15px;
+            padding: 20px;
             border-radius: 10px;
-            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
         }
 
-        .summary-item span {
-            display: block;
-            font-size: 0.75rem;
-            color: #666;
-        }
+        .summary-item b { display: block; color: var(--night-blue); font-size: 1.1rem; }
+        .summary-item span { font-size: 0.75rem; color: #666; font-weight: 600; text-transform: uppercase; }
 
-        .summary-item strong {
-            font-size: 1rem;
-            color: var(--night-blue);
-        }
-
-        .ulasan {
-            background: #fff8e1;
+        .comment-box {
+            margin-top: 20px;
             padding: 15px;
-            border-left: 4px solid #ffc107;
-            font-style: italic;
+            border-left: 5px solid var(--night-blue);
+            background: #fafafa;
             font-size: 0.9rem;
-            margin-bottom: 20px;
         }
 
-        .footer-note {
+        .print-note {
+            margin-top: 20px;
+            text-align: center;
             font-size: 0.8rem;
             font-style: italic;
-            text-align: center;
-            margin-top: 20px;
             color: #777;
         }
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 0.8rem;
-            color: #555;
-            margin-top: 50px;
+        .btn-print {
+            margin-top: 20px;
+            background: #27ae60;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            cursor: pointer;
+            font-weight: 600;
         }
 
-        /* PRINT STYLING */
+        /* FOOTER */
+        footer {
+            background: var(--night-blue);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            margin-top: 30px;
+        }
+
+        /* PRINT SETTINGS */
         @media print {
             body { background: white !important; }
-            .no-print, header, .card:not(#result-card) { display: none !important; }
-            .container { max-width: 100%; margin: 0; padding: 0; }
-            .card { box-shadow: none; border: none; }
-            #result-section { display: block !important; margin: 0; }
-            
-            .print-header {
-                display: block !important;
-                width: 100%;
-                margin-bottom: 20px;
-            }
-            .print-header img {
-                width: 100%;
-                height: auto;
-            }
+            header, .search-box, .btn-print, footer { display: none !important; }
+            .container { width: 100%; max-width: 100%; margin: 0; padding: 0; }
+            .card { box-shadow: none; padding: 0; border: none; }
+            #result-area { display: block !important; }
+            .slip-header-print { display: block !important; }
+            .summary-box { background: #f1f4f9 !important; -webkit-print-color-adjust: exact; }
+            @page { margin: 1cm; size: auto; }
         }
 
-        .print-header { display: none; }
-
-        /* LOADING SPINNER */
-        #loader {
-            display: none;
-            text-align: center;
-            margin: 20px;
-        }
+        /* Loading Spinner */
+        #loader { display: none; margin: 20px 0; }
     </style>
 </head>
 <body>
 
-<header>
-    <img src="https://i.ibb.co/VYSKMXf1/Logo-Selirik.png" alt="Logo SMK Selirik">
-    <h1>SMK SELIRIK, KAPIT</h1>
-    <p>Portal Semakan Peperiksaan Pertengahan 1 (Mac) 2026</p>
-</header>
+    <header>
+        <img src="https://i.ibb.co/VYSKMXf1/Logo-Selirik.png" alt="Logo SMK Selirik">
+        <h1>SMK SELIRIK, KAPIT</h1>
+        <p>Tahun 2026 - Portal Semakan Peperiksaan Pertengahan 1</p>
+    </header>
 
-<div class="container">
-    <div class="card no-print" id="search-card">
-        <div class="form-group">
-            <label>Pilih Tingkatan</label>
-            <select id="tingkatan">
-                <option value="1">Tingkatan 1</option>
-                <option value="2">Tingkatan 2</option>
-                <option value="3">Tingkatan 3</option>
-                <option value="4">Tingkatan 4</option>
-                <option value="5">Tingkatan 5</option>
-            </select>
+    <div class="container">
+        <div class="card search-box">
+            <div class="form-group">
+                <label>Pilih Tingkatan</label>
+                <select id="selectTingkatan">
+                    <option value="1">Tingkatan 1</option>
+                    <option value="2">Tingkatan 2</option>
+                    <option value="3">Tingkatan 3</option>
+                    <option value="4">Tingkatan 4</option>
+                    <option value="5">Tingkatan 5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>No. Kad Pengenalan (Tanpa '-')</label>
+                <input type="text" id="icNumber" placeholder="Contoh: 090101135566" maxlength="12">
+            </div>
+            <button class="btn-check" onclick="semakMarkah()">SEMAK KEPUTUSAN</button>
+            
+            <div id="loader">Memproses data... Sila tunggu sebentar.</div>
         </div>
-        <div class="form-group">
-            <label>Masukkan No. Kad Pengenalan (Tanpa -)</label>
-            <input type="text" id="ic_input" placeholder="Contoh: 090101135566" maxlength="12">
-        </div>
-        <button onclick="cariMarkah()">Semak Keputusan</button>
-        
-        <div id="loader">Memproses data...</div>
-    </div>
 
-    <div id="result-section">
-        <div class="card" id="result-card">
-            <div class="print-header">
-                <img src="https://i.ibb.co/670hn3CB/smk-selirik.png" alt="Header Sekolah">
+        <div id="result-area">
+            <div class="card">
+                <div class="slip-header-print">
+                    <img src="https://i.ibb.co/670hn3CB/smk-selirik.png" alt="Official Header">
+                </div>
+
+                <h3 style="text-align: center; margin-bottom: 20px; color: var(--night-blue);">SLIP KEPUTUSAN PEPERIKSAAN MAC 2026</h3>
+
+                <div class="info-grid">
+                    <div>
+                        <small>NAMA PELAJAR</small>
+                        <p><b id="p-nama">-</b></p>
+                    </div>
+                    <div>
+                        <small>KELAS</small>
+                        <p><b id="p-kelas">-</b></p>
+                    </div>
+                    <div>
+                        <small>NO. KAD PENGENALAN</small>
+                        <p><b id="p-ic">-</b></p>
+                    </div>
+                    <div>
+                        <small>TINGKATAN</small>
+                        <p><b id="p-ting">-</b></p>
+                    </div>
+                </div>
+
+                <table id="tableMarkah">
+                    <thead>
+                        <tr>
+                            <th>MATA PELAJARAN</th>
+                            <th class="text-center">MARKAH</th>
+                            <th class="text-center">GRED</th>
+                        </tr>
+                    </thead>
+                    <tbody id="subjectsBody"></tbody>
+                </table>
+
+                <div class="summary-box" id="summaryGrid">
+                    </div>
+
+                <div class="comment-box">
+                    <b>ULASAN GURU KELAS:</b><br>
+                    <p id="p-ulasan">-</p>
+                </div>
+
+                <div class="print-note">
+                    Slip ini adalah cetakan komputer. Tandatangan tidak diperlukan.
+                </div>
+
+                <button class="btn-print" onclick="window.print()">CETAK / SIMPAN PDF</button>
             </div>
-
-            <div class="student-header">
-                <h2 id="res-nama" style="text-transform: uppercase; color: var(--night-blue);">NAMA PELAJAR</h2>
-                <p id="res-kelas">KELAS: -</p>
-                <p id="res-ic">IC: -</p>
-            </div>
-
-            <table class="result-table">
-                <thead>
-                    <tr>
-                        <th>MATA PELAJARAN</th>
-                        <th style="text-align:center">MARKAH</th>
-                        <th style="text-align:center">GRED</th>
-                    </tr>
-                </thead>
-                <tbody id="res-subjects">
-                    </tbody>
-            </table>
-
-            <div class="summary-grid">
-                <div class="summary-item">
-                    <span>JUMLAH MARKAH</span>
-                    <strong id="res-jumlah">-</strong>
-                </div>
-                <div class="summary-item">
-                    <span>PURATA MARKAH</span>
-                    <strong id="res-purata">-</strong>
-                </div>
-                <div class="summary-item">
-                    <span>GRED PURATA (GP)</span>
-                    <strong id="res-gp">-</strong>
-                </div>
-                <div class="summary-item" id="png-box">
-                    <span>PNG</span>
-                    <strong id="res-png">-</strong>
-                </div>
-                <div class="summary-item">
-                    <span>ANALISIS</span>
-                    <strong id="res-analisis">-</strong>
-                </div>
-                <div class="summary-item">
-                    <span>KEPUTUSAN</span>
-                    <strong id="res-keputusan">-</strong>
-                </div>
-                <div class="summary-item">
-                    <span>KED. DALAM KELAS</span>
-                    <strong id="res-kdk">-</strong>
-                </div>
-                <div class="summary-item">
-                    <span>KED. DALAM TINGKATAN</span>
-                    <strong id="res-kdt">-</strong>
-                </div>
-            </div>
-
-            <div class="ulasan">
-                <strong>Ulasan Guru Kelas:</strong><br>
-                <span id="res-ulasan">-</span>
-            </div>
-
-            <div class="footer-note">
-                Slip ini adalah cetakan komputer. Tandatangan tidak diperlukan.
-            </div>
-
-            <button class="no-print" style="margin-top:20px; background:#27ae60;" onclick="window.print()">Cetak / Simpan PDF</button>
-            <button class="no-print" style="margin-top:10px; background:#e74c3c;" onclick="location.reload()">Semakan Baharu</button>
         </div>
     </div>
-</div>
 
-<footer>
-    Hakcipta &copy; NDJE@Selirik, Kapit 2026
-</footer>
+    <footer>
+        Hakcipta &copy; NDJE@Selirik, Kapit 2026
+    </footer>
 
-<script>
-    const CSV_URLS = {
-        "1": "https://docs.google.com/spreadsheets/d/e/2PACX-1vS9ngcL37KMX8ZDsGKomo7Lv6yowNqFdcWciJuvS1UkUU6aFHI_VKuFDLP1d0fKtMlXTW8APMYD38xZ/pub?gid=1419213935&single=true&output=csv",
-        "2": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSD6QwXil_0_gA0OBb2t82FneuCt68Sp7P9-He4zyBPEoaVHkJent8hiCSFPa33F-AEmR9BgeEogpt-/pub?gid=1419213935&single=true&output=csv",
-        "3": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQg40cTCNS7MVyZVA3-8sZkbNtVT_Db9abxz6xhv1ccZ5ZksWIy0qyn8y30lqxG9G9YN1TOMBXF7WCY/pub?gid=1419213935&single=true&output=csv",
-        "4": "https://docs.google.com/spreadsheets/d/e/2PACX-1vR831uDWcPfxf9zOj-mekolv_DMkdsYRMdVsxoLcKqwL88z-tetvP57ti5wB5M2dYIXYVZf9eX7R6Q8/pub?gid=1615224868&single=true&output=csv",
-        "5": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRq9lzeK5sombRvA2WRgEYGygUdZwEfifZHVy4IMZiRD7c-yll60qkA4pXeBBocqJsRV6GpM1uazU_B/pub?gid=1615224868&single=true&output=csv"
-    };
+    <script>
+        const CSV_LINKS = {
+            "1": "https://docs.google.com/spreadsheets/d/e/2PACX-1vS9ngcL37KMX8ZDsGKomo7Lv6yowNqFdcWciJuvS1UkUU6aFHI_VKuFDLP1d0fKtMlXTW8APMYD38xZ/pub?gid=1419213935&single=true&output=csv",
+            "2": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSD6QwXil_0_gA0OBb2t82FneuCt68Sp7P9-He4zyBPEoaVHkJent8hiCSFPa33F-AEmR9BgeEogpt-/pub?gid=1419213935&single=true&output=csv",
+            "3": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQg40cTCNS7MVyZVA3-8sZkbNtVT_Db9abxz6xhv1ccZ5ZksWIy0qyn8y30lqxG9G9YN1TOMBXF7WCY/pub?gid=1419213935&single=true&output=csv",
+            "4": "https://docs.google.com/spreadsheets/d/e/2PACX-1vR831uDWcPfxf9zOj-mekolv_DMkdsYRMdVsxoLcKqwL88z-tetvP57ti5wB5M2dYIXYVZf9eX7R6Q8/pub?gid=1615224868&single=true&output=csv",
+            "5": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRq9lzeK5sombRvA2WRgEYGygUdZwEfifZHVy4IMZiRD7c-yll60qkA4pXeBBocqJsRV6GpM1uazU_B/pub?gid=1615224868&single=true&output=csv"
+        };
 
-    function cariMarkah() {
-        const ting = document.getElementById('tingkatan').value;
-        const ic = document.getElementById('ic_input').value.trim();
-        const loader = document.getElementById('loader');
+        function semakMarkah() {
+            const ting = document.getElementById('selectTingkatan').value;
+            const ic = document.getElementById('icNumber').value.trim();
+            const loader = document.getElementById('loader');
+            const resultArea = document.getElementById('result-area');
 
-        if (ic === "") {
-            alert("Sila masukkan No. Kad Pengenalan.");
-            return;
-        }
+            if(!ic) { alert("Sila masukkan No. Kad Pengenalan"); return; }
 
-        loader.style.display = "block";
+            loader.style.display = "block";
+            resultArea.style.display = "none";
 
-        Papa.parse(CSV_URLS[ting], {
-            download: true,
-            header: false, // Kita guna index manual berdasarkan arahan
-            complete: function(results) {
-                loader.style.display = "none";
-                const data = results.data;
-                // Cari baris pelajar (Index 1 adalah Kolum B - IC)
-                const studentData = data.find(row => row[1] && row[1].toString().replace(/-/g, '') === ic);
-
-                if (studentData) {
-                    paparData(studentData, ting);
-                } else {
-                    alert("Rekod tidak ditemui. Sila pastikan No. KP dan Tingkatan adalah betul.");
+            Papa.parse(CSV_LINKS[ting], {
+                download: true,
+                header: false,
+                complete: function(results) {
+                    loader.style.display = "none";
+                    processData(results.data, ic, ting);
+                },
+                error: function() {
+                    loader.style.display = "none";
+                    alert("Ralat memuatkan data. Sila periksa sambungan internet.");
                 }
-            },
-            error: function() {
-                loader.style.display = "none";
-                alert("Ralat memuat turun data. Sila cuba lagi.");
-            }
-        });
-    }
-
-    function paparData(row, ting) {
-        document.getElementById('search-card').style.display = "none";
-        document.getElementById('result-section').style.display = "block";
-
-        // Info Asas
-        document.getElementById('res-nama').innerText = row[2]; // Kolum C
-        document.getElementById('res-kelas').innerText = "KELAS: " + row[3]; // Kolum D
-        document.getElementById('res-ic').innerText = "IC: " + row[1]; // Kolum B
-
-        let subjectsHtml = "";
-        let mapping = [];
-
-        // Definisi Mapping Subjek
-        if (ting == "4" || ting == "5") {
-            mapping = [
-                {n: "BAHASA MELAYU", m: 4, g: 5},
-                {n: "SEJARAH", m: 6, g: 7},
-                {n: "ENGLISH LANGUAGE", m: 8, g: 9},
-                {n: "MATEMATIK / MATHEMATICS", m: 10, g: 11},
-                {n: "PENDIDIKAN MORAL", m: 12, g: 13},
-                {n: "PENDIDIKAN ISLAM", m: 14, g: 15},
-                {n: "SAINS", m: 16, g: 17},
-                {n: "PENDIDIKAN SENI VISUAL", m: 18, g: 19},
-                {n: "BAHASA IBAN", m: 20, g: 21},
-                {n: "REKA CIPTA", m: 22, g: 23},
-                {n: "PENGAJIAN PENIAGAAN", m: 24, g: 25},
-                {n: "PHYSICS", m: 26, g: 27},
-                {n: "CHEMISTRY", m: 28, g: 29},
-                {n: "BIOLOGY", m: 30, g: 31},
-                {n: "ADDITIONAL MATHEMATICS", m: 32, g: 33},
-                {n: "SAINS KOMPUTER", m: 34, g: 35},
-                {n: "KIMPALAN ARKA & GAS", m: 36, g: 37},
-                {n: "PENDIDIKAN JASMANI & KESIHATAN", m: 62, g: 63}
-            ];
-            // Rumusan T4 & T5
-            document.getElementById('res-jumlah').innerText = row[78]; // CA
-            document.getElementById('res-purata').innerText = row[79]; // CB
-            document.getElementById('res-gp').innerText = row[80]; // CC
-            document.getElementById('res-png').innerText = row[81]; // CD
-            document.getElementById('res-analisis').innerText = row[84]; // CG
-            document.getElementById('res-keputusan').innerText = row[82]; // CE
-            document.getElementById('res-kdk').innerText = row[83]; // CF
-            document.getElementById('res-kdt').innerText = row[101]; // CX
-            document.getElementById('res-ulasan').innerText = row[100]; // CW
-            document.getElementById('png-box').style.display = "block";
-        } else {
-            mapping = [
-                {n: "BAHASA MELAYU", m: 4, g: 5},
-                {n: "ENGLISH LANGUAGE", m: 6, g: 7},
-                {n: "MATEMATIK", m: 8, g: 9},
-                {n: "SEJARAH", m: 10, g: 11},
-                {n: "SAINS", m: 12, g: 13},
-                {n: "GEOGRAFI", m: 14, g: 15},
-                {n: "BAHASA IBAN", m: 16, g: 17},
-                {n: "PENDIDIKAN MORAL", m: 18, g: 19},
-                {n: "PENDIDIKAN ISLAM", m: 20, g: 21},
-                {n: "REKA BENTUK & TEKNOLOGI", m: 22, g: 23},
-                {n: "ASAS SAINS KOMPUTER", m: 24, g: 25},
-                {n: "PENDIDIKAN SENI VISUAL", m: 26, g: 27},
-                {n: "PENDIDIKAN JASMANI & KESIHATAN", m: 40, g: 41}
-            ];
-            // Rumusan T1-T3
-            document.getElementById('res-jumlah').innerText = row[54]; // BC
-            document.getElementById('res-purata').innerText = row[55]; // BD
-            document.getElementById('res-gp').innerText = row[56]; // BE
-            document.getElementById('res-analisis').innerText = row[59]; // BH
-            document.getElementById('res-keputusan').innerText = row[57]; // BF
-            document.getElementById('res-kdk').innerText = row[58]; // BG
-            document.getElementById('res-kdt').innerText = row[70]; // BR
-            document.getElementById('res-ulasan').innerText = row[60]; // BI
-            document.getElementById('png-box').style.display = "none";
+            });
         }
 
-        // Generate baris subjek jika markah bukan NULL atau kosong
-        mapping.forEach(sub => {
-            let markah = row[sub.m];
-            let gred = row[sub.g];
-            if (markah && markah !== "NULL" && markah !== "") {
-                subjectsHtml += `<tr>
-                    <td>${sub.n}</td>
-                    <td style="text-align:center">${markah}</td>
-                    <td style="text-align:center"><strong>${gred}</strong></td>
-                </tr>`;
+        function processData(data, ic, ting) {
+            // Index kolum berdasarkan B (Index 1)
+            const student = data.find(row => row[1] && row[1].replace(/-/g, '') === ic);
+
+            if(!student) {
+                alert("Rekod tidak ditemui. Sila pastikan IC dan Tingkatan betul.");
+                return;
             }
-        });
 
-        document.getElementById('res-subjects').innerHTML = subjectsHtml;
-    }
-</script>
+            document.getElementById('p-nama').innerText = student[2]; // Kolum C
+            document.getElementById('p-ic').innerText = student[1];   // Kolum B
+            document.getElementById('p-kelas').innerText = student[3]; // Kolum D
+            document.getElementById('p-ting').innerText = "TINGKATAN " + ting;
 
+            const tbody = document.getElementById('subjectsBody');
+            const summaryGrid = document.getElementById('summaryGrid');
+            tbody.innerHTML = "";
+            summaryGrid.innerHTML = "";
+
+            let mapping = [];
+            let summary = [];
+
+            if(ting === "4" || ting === "5") {
+                mapping = [
+                    ["BAHASA MELAYU", 4, 5], ["SEJARAH", 6, 7], ["ENGLISH LANGUAGE", 8, 9], 
+                    ["MATEMATIK/MATHEMATICS", 10, 11], ["PENDIDIKAN MORAL", 12, 13], ["PENDIDIKAN ISLAM", 14, 15],
+                    ["SAINS", 16, 17], ["PENDIDIKAN SENI VISUAL", 18, 19], ["BAHASA IBAN", 20, 21],
+                    ["REKA CIPTA", 22, 23], ["PENGAJIAN PENIAGAAN", 24, 25], ["PHYSICS", 26, 27],
+                    ["CHEMISTRY", 28, 29], ["BIOLOGY", 30, 31], ["ADDITIONAL MATHEMATICS", 32, 33],
+                    ["SAINS KOMPUTER", 34, 35], ["KIMPALAN ARKA & GAS", 36, 37], ["PJPK", 62, 63]
+                ];
+                summary = [
+                    ["Jumlah Markah", 78], ["Purata Markah", 79], ["Gred Purata (GP)", 80], 
+                    ["PNG", 81], ["Analisis", 84], ["Keputusan", 82], 
+                    ["KDK", 83], ["KDT", 101]
+                ];
+                document.getElementById('p-ulasan').innerText = student[100] || "-";
+            } else {
+                mapping = [
+                    ["BAHASA MELAYU", 4, 5], ["ENGLISH LANGUAGE", 6, 7], ["MATEMATIK", 8, 9],
+                    ["SEJARAH", 10, 11], ["SAINS", 12, 13], ["GEOGRAFI", 14, 15],
+                    ["BAHASA IBAN", 16, 17], ["PENDIDIKAN MORAL", 18, 19], ["PENDIDIKAN ISLAM", 20, 21],
+                    ["REKA BENTUK & TEKNOLOGI", 22, 23], ["ASAS SAINS KOMPUTER", 24, 25], 
+                    ["PENDIDIKAN SENI VISUAL", 26, 27], ["PJPK", 40, 41]
+                ];
+                summary = [
+                    ["Jumlah Markah", 54], ["Purata Markah", 55], ["Gred Purata (GP)", 56], 
+                    ["Analisis", 59], ["Keputusan", 57], ["KDK", 58], ["KDT", 69]
+                ];
+                document.getElementById('p-ulasan').innerText = student[60] || "-";
+            }
+
+            // Tapis dan Papar Markah
+            mapping.forEach(sub => {
+                const mark = student[sub[1]];
+                const gred = student[sub[2]];
+                if(mark && mark.toUpperCase() !== 'NULL' && mark.trim() !== "") {
+                    tbody.innerHTML += `<tr><td>${sub[0]}</td><td class="text-center">${mark}</td><td class="text-center"><b>${gred}</b></td></tr>`;
+                }
+            });
+
+            // Papar Rumusan
+            summary.forEach(sum => {
+                summaryGrid.innerHTML += `<div class="summary-item"><span>${sum[0]}</span><b>${student[sum[1]] || '-'}</b></div>`;
+            });
+
+            document.getElementById('result-area').style.display = "block";
+            window.scrollTo({ top: document.getElementById('result-area').offsetTop, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
